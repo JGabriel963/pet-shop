@@ -9,7 +9,6 @@ services:
       POSTGRES_PASSWORD: docker
       POSTGRES_DB: petshop
 #
-# version: '3.8'
 # services:
 #   postgres:
 #     image: postgres:17
