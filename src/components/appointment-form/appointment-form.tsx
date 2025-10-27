@@ -110,6 +110,8 @@ export default function AppointmentForm({
       Number(minute)
     );
 
+    console.log('form-schedule', scheduleAt);
+
     const isEdit = !!appointment?.id;
 
     const result = isEdit
@@ -302,7 +304,7 @@ export default function AppointmentForm({
                           mode="single"
                           selected={field.value}
                           onSelect={field.onChange}
-                          disabled={(date) => date <= startOfToday()}
+                          disabled={(date) => date < startOfToday()}
                         />
                       </PopoverContent>
                     </Popover>

@@ -14,7 +14,7 @@ const appointmentSchema = z.object({
 });
 
 function calculatePeriod(hour: number) {
-  const isMorning = hour >= 0 && hour < 12;
+  const isMorning = hour >= 9 && hour < 12;
   const isAfternoon = hour >= 13 && hour < 18;
   const isEvening = hour >= 18 && hour < 21;
 
@@ -32,7 +32,7 @@ export async function createAppointment(data: AppointmentData) {
     const parseData = appointmentSchema.parse(data);
 
     const { scheduleAt } = parseData;
-    const hour = parseInt(formatDateTime(scheduleAt));
+    const hour = scheduleAt.getHours();
 
     const { isMorning, isAfternoon, isEvening } = calculatePeriod(hour);
 
@@ -75,7 +75,7 @@ export async function updateAppointment(id: string, data: AppointmentData) {
     const parseData = appointmentSchema.parse(data);
 
     const { scheduleAt } = parseData;
-    const hour = parseInt(formatDateTime(scheduleAt));
+    const hour = scheduleAt.getHours();
 
     const { isMorning, isAfternoon, isEvening } = calculatePeriod(hour);
 
